@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="ip" type="text">
+    <button onclick="add()">Add</button>
+    <button onclick="removeLast()">Remove Last</button>
+
+    <ul id="taskList"></ul>
+    <script>
+        let tasks = [];
+
+        function add() {
+            const ip = document.getElementById("ip");
+            const text = ip.value.trim();
+            if (text !== "") {
+                tasks.push(text);
+                display();
+                ip.value = "";
+            }
+        }
+
+        function display() {
+            const disp = document.getElementById("taskList");
+            disp.innerHTML = ""; // Clear previous content
+
+            tasks.forEach((task, index) => {
+                let newE = document.createElement("li");
+                newE.textContent = task;
+                disp.appendChild(newE);
+            });
+        }
+
+        function removeLast() {
+            if (tasks.length > 0) {
+                tasks.pop(); // Remove the last task from the array
+                display(); // Update the displayed list
+            } else {
+                alert("There are no tasks to remove.");
+            }
+        }
+    </script>
+</body>
+</html>
